@@ -1,21 +1,30 @@
 package com.sarthak.popularmovies.model;
 
-public class Model {
+public class Movie {
     private String name;
     private String image;
     private String overview;
     private Float voteAverage;
     private String releaseDate;
+    private String result;
 
-    public Model(){
+    public Movie(){
     }
 
-    public Model(String name, String image, String overview, Float voteAverage, String releaseDate) {
+    public Movie(String name, String image, String overview, Float voteAverage, String releaseDate) {
         this.name = name;
         this.image = image;
         this.overview = overview;
         this.voteAverage = voteAverage;
         this.releaseDate = releaseDate;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 
     public String getName() {
