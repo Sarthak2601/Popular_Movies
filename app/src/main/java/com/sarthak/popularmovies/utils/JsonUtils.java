@@ -38,5 +38,4 @@ public class JsonUtils {
 
         return movie;
     }
-
 }
