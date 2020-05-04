@@ -17,8 +17,8 @@ public class NetworkUtils {
     final static String sortBy = null;
 
     public static URL buildUrl(){
-        Uri buildUri = Uri.parse(BASE_URL).buildUpon()
-                .appendQueryParameter(PARAM_SORT,sortBy)
+        Uri buildUri = Uri.parse(BASE_URL+API_KEY).buildUpon()
+                //.appendQueryParameter(PARAM_SORT,sortBy)
                 .build();
         URL url = null;
         try {
