@@ -1,11 +1,17 @@
 package com.sarthak.popularmovies.utils;
 
+import android.content.Context;
+
+import com.sarthak.popularmovies.R;
 import com.sarthak.popularmovies.model.Movie;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 public class JsonUtils {
 
@@ -15,27 +21,31 @@ public class JsonUtils {
     private static String KEY_RATING = "vote_average";
     private static String KEY_RELEASE = "release_date";
     private static String KEY_RESULT = "results";
+    String base_url = "http://image.tmdb.org/t/p/w185";
 
     public static Movie parseMovieJson(String json) throws JSONException {
 
         JSONObject movieObject;
-        JSONObject resultObject;
+        JSONArray resultObject;
+        JSONObject object;
         String name;
         String image;
         String overview;
         float rating;
         String release;
         Movie movie;
+        ArrayList<String> Posters = new ArrayList<>();
+        ArrayList<Integer> ids;
 
         movieObject = new JSONObject(json);
-        resultObject = movieObject.getJSONObject(KEY_RESULT);
-        name = resultObject.getString(KEY_NAME);
-        image = resultObject.getString(KEY_IMAGE);
-        overview = resultObject.getString(KEY_OVERVIEW);
-        rating = BigDecimal.valueOf(resultObject.getDouble(KEY_RATING)).floatValue();
-        release = resultObject.getString(KEY_RELEASE);
-        movie = new Movie(name,image,overview,rating,release);
+        resultObject = movieObject.getJSONArray(KEY_RESULT);
 
-        return movie;
+       for(int i = 0; i< resultObject.length(); i++){
+
+           object = resultObject.getJSONObject(i);
+           Posters.add(object.getString(KEY_IMAGE));
+
+       }
+        return new Movie();
     }
 }
